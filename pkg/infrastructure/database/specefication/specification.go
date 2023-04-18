@@ -2,7 +2,7 @@ package specification
 
 import (
 	"context"
-	"mong-specification/infrastructure/mongo/sort"
+	"mong-specification/pkg/sort"
 )
 
 type Specification interface {
