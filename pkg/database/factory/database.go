@@ -27,7 +27,7 @@ func NewDatabaseController(name DatabaseType, definitions, baseEntities []databa
 		fallthrough
 
 	case Mongo:
-		cfg := param[0].(PgConfig)
+		cfg := param[0].(MongoConfig)
 		return mongo.NewPgController(mongo.Config{
 			Host:     cfg.Host,
 			Port:     cfg.Port,
@@ -42,6 +42,6 @@ func NewDatabaseController(name DatabaseType, definitions, baseEntities []databa
 	panic(ErrNotImplemented)
 }
 
-type PgConfig struct {
+type MongoConfig struct {
 	mongo.Config
 }

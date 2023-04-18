@@ -3,7 +3,7 @@ package mspecification
 
 import (
 	"go.mongodb.org/mongo-driver/bson"
-	"mong-specification/infrastructure/mongo/filters"
+	"mong-specification/pkg/filters"
 )
 
 // stringFilterBson converts a StringFilter to a bson.M

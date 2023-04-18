@@ -3,8 +3,9 @@ package mspecification
 import (
 	"context"
 	"go.mongodb.org/mongo-driver/bson"
-	"mong-specification/infrastructure/mongo/sort"
-	specification "mong-specification/infrastructure/mongo/specefication"
+	specification "mong-specification/pkg/infrastructure/database/specefication"
+	"mong-specification/pkg/sort"
+
 	"mong-specification/pkg/utils"
 )
 
