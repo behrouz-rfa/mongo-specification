@@ -70,7 +70,7 @@ type MongoDatabase struct {
 	DBConfig Config
 }
 
-func NewMongoDatabase(DBConfig Config) *MongoDatabase {
+func NewMoDatabase(DBConfig Config) *MongoDatabase {
 	md := MongoDatabase{}
 	md.DBConfig = DBConfig
 	return &md

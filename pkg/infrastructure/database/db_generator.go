@@ -20,12 +20,17 @@ func (config Config) DSN() string {
 		config.Host, config.Port, config.User, config.Pass, config.Name)
 }
 
+type TransactionFactoryGetter interface {
+	GetTransactionFactory() (MongoTransactionFactory, error)
+}
+
 // TODO: Ambiguous definition for db first strategy, func name should be changed.
 type DatabaseGenerator interface {
 	Generate() error
 	Init() error
 }
 type DatabaseController interface {
+	TransactionFactoryGetter
 	DatabaseGenerator
 }
 

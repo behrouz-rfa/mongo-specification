@@ -14,24 +14,24 @@ func NewPgController(dbConfig Config, entityDefinitions, baseEntities []database
 	return &MongoController{entityDefinitions: entityDefinitions, baseEntities: baseEntities, config: dbConfig}
 }
 
-func (d *MongoController) GetTransactionFactory() error {
+func (d *MongoController) GetTransactionFactory() (database.MongoTransactionFactory, error) {
 	if !d.initialized {
-
 		err := d.Init()
 		if err != nil {
-			return err
+			return nil, err
 		}
 	}
 
-	return nil
+	return NewTransactionFactory(d.db), nil
 }
-func (d *MongoController) Generate() error {
 
-	return nil
+func (d *MongoController) Generate() error {
+	md := NewMoDatabase(d.config)
+	d.db = md
+	return md.Open()
 }
 func (d *MongoController) Init() error {
+	NewTransactionFactory(d.db)
+	d.initialized = true
 	return nil
-}
-func (t *MongoController) GetDataContext() any {
-	return t.db
 }
