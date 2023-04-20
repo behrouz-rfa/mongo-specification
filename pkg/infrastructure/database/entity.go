@@ -27,26 +27,26 @@ type DocumentBase struct {
 	UpdatedAt time.Time `bson:"updatedAt"`
 }
 
-func (d *DocumentBase) GetID() string {
+func (d DocumentBase) GetID() string {
 	return d.ID
 }
 
-func (d *DocumentBase) SetID(id string) {
+func (d DocumentBase) SetID(id string) {
 	d.ID = id
 }
 
-func (d *DocumentBase) GenerateID() {
+func (d DocumentBase) GenerateID() {
 	d.ID = utils.GenerateUUID()
 }
 
-func (d *DocumentBase) SetCreatedAt() {
+func (d DocumentBase) SetCreatedAt() {
 	d.CreatedAt = time.Now()
 }
 
-func (d *DocumentBase) SetUpdatedAt() {
+func (d DocumentBase) SetUpdatedAt() {
 	d.UpdatedAt = time.Now()
 }
 
-func (d *DocumentBase) CollectionName() string {
+func (d DocumentBase) CollectionName() string {
 	return collectionName(d)
 }

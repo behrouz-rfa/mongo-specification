@@ -8,6 +8,7 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/iancoleman/strcase v0.2.0
 	go.mongodb.org/mongo-driver v1.11.4
+	gopkg.in/jeevatkm/go-model.v1 v1.1.0
 )
 
 require (

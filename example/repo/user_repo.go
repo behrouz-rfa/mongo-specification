@@ -2,16 +2,21 @@ package repo
 
 import (
 	"context"
-	"mong-specification/example/model"
-	"mong-specification/example/specification"
+	"mong-specification/example/entity"
+	specification "mong-specification/pkg/infrastructure/database/specefication"
+
+	data "mong-specification/pkg/infrastructure/database"
 )
 
-// UserRepository is the interface that wraps the basic CRUD operations for User.
-type UserRepository interface {
-	GetUser(ctx context.Context, spec specification.UserSpecification) (*model.User, error)
-	GetUsers(ctx context.Context, spec specification.UserSpecification) ([]*model.User, error)
-	CreateUser(ctx context.Context, user *model.User) (string, error)
-	UpdateUser(ctx context.Context, id string, user *model.User) error
-	DeleteUser(ctx context.Context, id string) error
-	NewUserSpecification(ctx context.Context) specification.UserSpecification
+// User is the interface that wraps the basic CRUD operations for User.
+type User interface {
+	FindOneBy(ctx context.Context, spec specification.Set) (entity.User, error)
+	FindBy(ctx context.Context, spec specification.Set) ([]entity.User, error)
+	Create(ctx context.Context, user entity.User) (string, error)
+	Update(ctx context.Context, id string, user entity.User) (entity.User, error)
+	Delete(ctx context.Context, id string) error
+}
+
+type UserRepoFactory interface {
+	NewTender(data.DataContextGetter) User
 }
