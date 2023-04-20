@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"mong-specification/example/model"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -12,15 +13,6 @@ import (
 	monggDb "mong-specification/pkg/database/mongo"
 	data "mong-specification/pkg/infrastructure/database"
 )
-
-type User struct {
-	data.DocumentBase `bson:"inline"`
-	Name              string
-}
-
-func (d User) CollectionName() string {
-	return "users"
-}
 
 func main() {
 	cfg := factory.MongoConfig{}
@@ -83,8 +75,8 @@ func main() {
 		return
 	}
 
-	repo := monggDb.NewRepo[*User, User](t2)
-	create, err := repo.Create(ctx, &User{
+	repo := monggDb.NewRepo[*model.User, *model.User](t2)
+	create, err := repo.Create(ctx, &model.User{
 		DocumentBase: data.DocumentBase{},
 		Name:         "data",
 	})
