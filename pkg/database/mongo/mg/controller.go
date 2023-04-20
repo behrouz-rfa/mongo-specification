@@ -1,6 +1,6 @@
 package mg
 
-import "mong-specification/pkg/infrastructure/database"
+import "github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database"
 
 type MongoController struct {
 	db                *MongoDatabase

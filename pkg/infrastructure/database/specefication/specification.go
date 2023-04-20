@@ -2,7 +2,7 @@ package specification
 
 import (
 	"context"
-	"mong-specification/pkg/sort"
+	"github.com/behrouz-rfa/mong-specification/pkg/sort"
 )
 
 type Specification interface {

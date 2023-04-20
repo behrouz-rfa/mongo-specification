@@ -2,8 +2,8 @@ package factory
 
 import (
 	"errors"
-	"mong-specification/pkg/database/mongo/mg"
-	"mong-specification/pkg/infrastructure/database"
+	"github.com/behrouz-rfa/mong-specification/pkg/database/mongo/mg"
+	"github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database"
 )
 
 type DatabaseType string

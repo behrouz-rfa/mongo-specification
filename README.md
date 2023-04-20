@@ -11,7 +11,7 @@ go get -u github.com/behrouz-rfa/mongo-specification
 # Usage
 To use the package, you need to import it in your Go code:
 ```
-import "mong-specification/pkg/database/mongo"
+import "github.com/behrouz-rfa/mong-specification/pkg/database/mongo"
 ```
 
 You can then create a new MongoDB repository using the following code:
@@ -34,17 +34,17 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"mong-specification/example/entity"
-	"mong-specification/example/model"
-	"mong-specification/pkg/mspecification"
+	"github.com/behrouz-rfa/mong-specification/example/entity"
+	"github.com/behrouz-rfa/mong-specification/example/model"
+	"github.com/behrouz-rfa/mong-specification/pkg/mspecification"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 
-	exFactory "mong-specification/example/factory"
-	"mong-specification/pkg/database/factory"
-	monggDb "mong-specification/pkg/database/mongo"
-	data "mong-specification/pkg/infrastructure/database"
+	exFactory "github.com/behrouz-rfa/mong-specification/example/factory"
+	"github.com/behrouz-rfa/mong-specification/pkg/database/factory"
+	monggDb "github.com/behrouz-rfa/mong-specification/pkg/database/mongo"
+	data "github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database"
 )
 
 func main() {

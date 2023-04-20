@@ -2,8 +2,8 @@ package factory
 
 import (
 	"errors"
-	"mong-specification/example/model"
-	"mong-specification/example/repo"
+	"github.com/behrouz-rfa/mong-specification/example/model"
+	"github.com/behrouz-rfa/mong-specification/example/repo"
 )
 
 var (

@@ -3,12 +3,12 @@ package database
 import (
 	"context"
 	"encoding/json"
+	specification "github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database/specefication"
 	"github.com/fatih/structs"
 	"github.com/gertd/go-pluralize"
 	"github.com/iancoleman/strcase"
 	"go.mongodb.org/mongo-driver/mongo"
 	"log"
-	specification "mong-specification/pkg/infrastructure/database/specefication"
 )
 
 var pluralizer *pluralize.Client

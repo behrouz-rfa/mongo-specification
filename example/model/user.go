@@ -1,11 +1,11 @@
 package model
 
 import (
+	"github.com/behrouz-rfa/mong-specification/example/entity"
+	"github.com/behrouz-rfa/mong-specification/example/repo"
+	monggDb "github.com/behrouz-rfa/mong-specification/pkg/database/mongo"
+	data "github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database"
 	"github.com/google/uuid"
-	"mong-specification/example/entity"
-	"mong-specification/example/repo"
-	monggDb "mong-specification/pkg/database/mongo"
-	data "mong-specification/pkg/infrastructure/database"
 )
 
 func NewUser(getter data.DataContextGetter) repo.User {

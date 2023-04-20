@@ -2,8 +2,8 @@
 package mspecification
 
 import (
+	"github.com/behrouz-rfa/mong-specification/pkg/filters"
 	"go.mongodb.org/mongo-driver/bson"
-	"mong-specification/pkg/filters"
 )
 
 // stringFilterBson converts a StringFilter to a bson.M

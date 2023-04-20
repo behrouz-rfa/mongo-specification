@@ -2,9 +2,9 @@ package mongo
 
 import (
 	"context"
-	"mong-specification/pkg/infrastructure/database"
-	specification "mong-specification/pkg/infrastructure/database/specefication"
-	"mong-specification/pkg/mspecification"
+	"github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database"
+	specification "github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database/specefication"
+	"github.com/behrouz-rfa/mong-specification/pkg/mspecification"
 )
 
 type GenericBaseMongoRepo[T database.Document, J database.Document] struct {

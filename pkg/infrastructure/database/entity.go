@@ -1,8 +1,8 @@
 package database
 
 import (
+	"github.com/behrouz-rfa/mong-specification/pkg/utils"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"mong-specification/pkg/utils"
 	"time"
 )
 

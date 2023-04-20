@@ -1,8 +1,8 @@
 package model
 
 import (
-	"mong-specification/example/repo"
-	data "mong-specification/pkg/infrastructure/database"
+	"github.com/behrouz-rfa/mong-specification/example/repo"
+	data "github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database"
 )
 
 type MongoRepoFactory struct {
