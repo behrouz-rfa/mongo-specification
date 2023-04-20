@@ -58,7 +58,7 @@ func FindBy[Q, T any](ctx context.Context, params *FindByParams[Q, T]) ([]*T, er
 
 	params.Spec.WithContext(ctx)
 
-	cursor, err := params.Collection.Aggregate(ctx, params.Spec.Query(), diskAggregationOption)
+	cursor, err := params.Collection.Aggregate(ctx, params.Spec.Query(), DiskAggregationOption)
 
 	if err != nil {
 		return nil, err
@@ -82,7 +82,7 @@ func LogList(ctx context.Context, m *mongo.Collection, spec specification.Set) {
 
 	obj := make([]map[string]interface{}, 0)
 
-	cursor, err := m.Aggregate(ctx, spec.Query(), diskAggregationOption)
+	cursor, err := m.Aggregate(ctx, spec.Query(), DiskAggregationOption)
 
 	if err != nil {
 		log.Println(err)
@@ -107,7 +107,7 @@ func LogList(ctx context.Context, m *mongo.Collection, spec specification.Set) {
 func LogObject(ctx context.Context, m *mongo.Collection, spec specification.Set) {
 	obj := make([]map[string]interface{}, 0)
 
-	cursor, err := m.Aggregate(ctx, spec.Query(), diskAggregationOption)
+	cursor, err := m.Aggregate(ctx, spec.Query(), DiskAggregationOption)
 
 	if err != nil {
 		log.Println(err)

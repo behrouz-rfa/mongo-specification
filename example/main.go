@@ -3,20 +3,23 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
-	"log"
+
 	"mong-specification/pkg/database/factory"
-	"mong-specification/pkg/infrastructure/database"
+	monggDb "mong-specification/pkg/database/mongo"
+	data "mong-specification/pkg/infrastructure/database"
 )
 
 type User struct {
-	database.DocumentBase `bson:"inline"`
-	Name                  string
+	data.DocumentBase `bson:"inline"`
+	Name              string
 }
 
-func CollectionName() {
-
+func (d User) CollectionName() string {
+	return "users"
 }
 
 func main() {
@@ -30,6 +33,7 @@ func main() {
 	cfg.SSL = "false"
 	cfg.Clustered = false
 	cfg.Driver = "mongo"
+
 	db := DbController(cfg)
 
 	err := db.Generate()
@@ -47,22 +51,67 @@ func main() {
 	factory, _ := db.GetTransactionFactory()
 	t := factory.New()
 	ctx := context.Background()
-	t.Begin(ctx)
-	defer t.Commit(ctx)
-	data := t.GetDataContext().(*mongo.Database)
-	one, err := data.Collection("user").InsertOne(ctx, bson.M{"user_id": "123", "product": "computer"})
+
+	// Begin transaction
+	err = t.Begin(ctx)
 	if err != nil {
+		log.Println(err)
 		return
 	}
-	fmt.Println(one)
-	return
 
+	getterDb := t.GetDataContext().(*mongo.Database)
+	one, err := getterDb.Collection("user").InsertOne(ctx, bson.M{"user_id": "123", "product": "computer"})
+	if err != nil {
+		// Rollback transaction on error
+		t.Rollback(ctx)
+		log.Println(err)
+		return
+	}
+
+	// Commit transaction
+	err = t.Commit(ctx)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	t2 := factory.New()
+	// Begin transaction
+	err = t2.Begin(ctx)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	repo := monggDb.NewRepo[*User, User](t2)
+	create, err := repo.Create(ctx, &User{
+		DocumentBase: data.DocumentBase{},
+		Name:         "data",
+	})
+	if err != nil {
+		// Rollback transaction on error
+		t2.Rollback(ctx)
+		log.Println(err)
+		return
+	}
+
+	// Commit transaction
+	err = t2.Commit(ctx)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	fmt.Println(one)
+	fmt.Println(create)
+
+	return
 }
 
-func DbController(config factory.MongoConfig) database.DatabaseController {
+func DbController(config factory.MongoConfig) data.DatabaseController {
 	controller := factory.NewDatabaseController(factory.Mongo,
-		[]database.DocumentBase{},
-		[]database.DocumentBase{},
+		[]data.DocumentBase{},
+		[]data.DocumentBase{},
 		config,
 	)
 	err := controller.Generate()

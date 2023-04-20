@@ -2,7 +2,7 @@ package factory
 
 import (
 	"errors"
-	"mong-specification/pkg/database/mongo"
+	"mong-specification/pkg/database/mongo/mg"
 	"mong-specification/pkg/infrastructure/database"
 )
 
@@ -28,7 +28,7 @@ func NewDatabaseController(name DatabaseType, definitions, baseEntities []databa
 
 	case Mongo:
 		cfg := param[0].(MongoConfig)
-		return mongo.NewPgController(mongo.Config{
+		return mg.NewPgController(mg.Config{
 			Host:     cfg.Host,
 			Port:     cfg.Port,
 			Username: cfg.Username,
@@ -43,5 +43,5 @@ func NewDatabaseController(name DatabaseType, definitions, baseEntities []databa
 }
 
 type MongoConfig struct {
-	mongo.Config
+	mg.Config
 }

@@ -1,4 +1,4 @@
-package mongo
+package mg
 
 import "mong-specification/pkg/infrastructure/database"
 

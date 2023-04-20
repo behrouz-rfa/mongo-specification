@@ -1,9 +1,10 @@
-package database
+package mongo
 
 import (
 	"context"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
+	"mong-specification/pkg/infrastructure/database"
 	specification "mong-specification/pkg/infrastructure/database/specefication"
 	"mong-specification/pkg/utils"
 )
@@ -14,23 +15,23 @@ type ModelRepo interface {
 	ToModel() interface{}
 }
 
-type RepoBase[DbModel Document, CoreModel any] struct {
-	collection *mongo.Collection
+type RepoBase[DbModel database.Document, CoreModel any] struct {
+	db *mongo.Database
 }
 
-func NewRepo[DbModel Document, CoreModel any](getter DataContextGetter) *RepoBase[DbModel, CoreModel] {
+func NewRepo[DbModel database.Document, CoreModel any](getter database.DataContextGetter) *RepoBase[DbModel, CoreModel] {
 	db := getter.GetDataContext().(*mongo.Database)
-	var d DbModel
 	return &RepoBase[DbModel, CoreModel]{
-		collection: db.Collection(d.CollectionName()),
+		db: db,
 	}
 }
 
 func (r *RepoBase[D, C]) FindBy(ctx context.Context, spec specification.Set) ([]*C, error) {
 	var results []*C
+	var d D
 
 	spec.WithContext(ctx)
-	cursor, err := r.collection.Aggregate(ctx, spec.Query(), diskAggregationOption)
+	cursor, err := r.db.Collection(d.CollectionName()).Aggregate(ctx, spec.Query(), database.DiskAggregationOption)
 
 	if err != nil {
 		return nil, err
@@ -57,9 +58,10 @@ func (r *RepoBase[D, C]) ToModel(a D) *C {
 
 func (r *RepoBase[D, C]) FindOneBy(ctx context.Context, spec specification.Set) (*C, error) {
 	var results []D
+	var d D
 
 	spec.WithContext(ctx).Limit(1)
-	cursor, err := r.collection.Aggregate(ctx, spec.Query())
+	cursor, err := r.db.Collection(d.CollectionName()).Aggregate(ctx, spec.Query())
 
 	if err != nil {
 		return nil, err
@@ -81,7 +83,7 @@ func (r *RepoBase[D, C]) Update(ctx context.Context, id string, entry D) (*C, er
 	filter := bson.M{"_id": id}
 	data := utils.ToMap(entry, utils.MethodUpdate)
 
-	_, err := r.collection.UpdateOne(ctx, filter, bson.M{"$set": data})
+	_, err := r.db.Collection(entry.CollectionName()).UpdateOne(ctx, filter, bson.M{"$set": data})
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +92,7 @@ func (r *RepoBase[D, C]) Update(ctx context.Context, id string, entry D) (*C, er
 }
 
 func (r *RepoBase[D, C]) Create(ctx context.Context, entry D) (string, error) {
-	col := r.collection
+	col := r.db.Collection(entry.CollectionName())
 	data := utils.ToMap(entry)
 	i, err := col.InsertOne(ctx, data)
 
@@ -104,8 +106,8 @@ func (r *RepoBase[D, C]) Create(ctx context.Context, entry D) (string, error) {
 
 func (r *RepoBase[D, C]) Delete(ctx context.Context, id string) error {
 	filter := bson.M{"_id": id}
-
-	_, err := r.collection.DeleteOne(ctx, filter)
+	var d D
+	_, err := r.db.Collection(d.CollectionName()).DeleteOne(ctx, filter)
 	if err != nil {
 		return err
 	}

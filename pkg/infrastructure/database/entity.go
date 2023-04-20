@@ -6,11 +6,11 @@ import (
 	"time"
 )
 
-// diskAggregationOption tells mongo to store aggregation results on disk
+// DiskAggregationOption tells mongo to store aggregation results on disk
 // instead of in memory.
 // use this option when the aggregation result is large.
 // see: https://godoc.org/go.mongodb.org/mongo-driver/mongo/options#AggregateOptions
-var diskAggregationOption = &options.AggregateOptions{AllowDiskUse: utils.ToValue(true)}
+var DiskAggregationOption = &options.AggregateOptions{AllowDiskUse: utils.ToValue(true)}
 
 type Document interface {
 	GetID() string
