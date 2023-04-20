@@ -1,4 +1,4 @@
-#Mongo Specification
+# Mongo Specification
 This is a Go-based implementation of MongoDB specifications. It provides a way to interact with MongoDB using a high-level interface, allowing for easy database access and manipulation.
 
 #Installation
@@ -8,7 +8,7 @@ To use this package, you need to have Go installed on your machine. You can then
 go get -u github.com/behrouz-rfa/mongo-specification
 ```
 
-#Usage
+# Usage
 To use the package, you need to import it in your Go code:
 ```
 import "mong-specification/pkg/database/mongo"
@@ -25,7 +25,7 @@ Here, User is the struct that represents the MongoDB document, and *User is the 
 You can then call the CRUD methods on the repository to interact with the database.
 
 
-#Example
+# Example
 Here's an example of how to use the package:
 ```
 package main
@@ -127,5 +127,5 @@ func DbController(config factory.MongoConfig) data.DatabaseController {
 ```
 In this example, we create a MongoDB repository for the User struct, and then use the repository to create a new user document in the database.
 
-#License
+# License
 This package is licensed under the MIT license. See
