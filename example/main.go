@@ -3,18 +3,18 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/behrouz-rfa/mong-specification/example/entity"
-	"github.com/behrouz-rfa/mong-specification/example/model"
-	"github.com/behrouz-rfa/mong-specification/pkg/mspecification"
+	"github.com/behrouz-rfa/mongo-specification/example/entity"
+	"github.com/behrouz-rfa/mongo-specification/example/model"
+	"github.com/behrouz-rfa/mongo-specification/pkg/mspecification"
 	"log"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 
-	exFactory "github.com/behrouz-rfa/mong-specification/example/factory"
-	"github.com/behrouz-rfa/mong-specification/pkg/database/factory"
-	monggDb "github.com/behrouz-rfa/mong-specification/pkg/database/mongo"
-	data "github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database"
+	exFactory "github.com/behrouz-rfa/mongo-specification/example/factory"
+	"github.com/behrouz-rfa/mongo-specification/pkg/database/factory"
+	monggDb "github.com/behrouz-rfa/mongo-specification/pkg/database/mongo"
+	data "github.com/behrouz-rfa/mongo-specification/pkg/infrastructure/database"
 )
 
 func main() {

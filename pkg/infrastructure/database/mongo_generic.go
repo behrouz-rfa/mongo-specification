@@ -3,7 +3,7 @@ package database
 import (
 	"context"
 	"encoding/json"
-	specification "github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database/specefication"
+	specification "github.com/behrouz-rfa/mongo-specification/pkg/infrastructure/database/specefication"
 	"github.com/fatih/structs"
 	"github.com/gertd/go-pluralize"
 	"github.com/iancoleman/strcase"

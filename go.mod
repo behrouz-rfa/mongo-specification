@@ -1,4 +1,4 @@
-module github.com/behrouz-rfa/mong-specification
+module github.com/behrouz-rfa/mongo-specification
 
 go 1.20
 

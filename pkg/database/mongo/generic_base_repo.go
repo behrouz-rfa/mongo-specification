@@ -2,9 +2,9 @@ package mongo
 
 import (
 	"context"
-	"github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database"
-	specification "github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database/specefication"
-	"github.com/behrouz-rfa/mong-specification/pkg/utils"
+	"github.com/behrouz-rfa/mongo-specification/pkg/infrastructure/database"
+	specification "github.com/behrouz-rfa/mongo-specification/pkg/infrastructure/database/specefication"
+	"github.com/behrouz-rfa/mongo-specification/pkg/utils"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )

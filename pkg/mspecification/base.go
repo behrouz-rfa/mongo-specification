@@ -2,11 +2,11 @@ package mspecification
 
 import (
 	"context"
-	specification "github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database/specefication"
-	"github.com/behrouz-rfa/mong-specification/pkg/sort"
+	specification "github.com/behrouz-rfa/mongo-specification/pkg/infrastructure/database/specefication"
+	"github.com/behrouz-rfa/mongo-specification/pkg/sort"
 	"go.mongodb.org/mongo-driver/bson"
 
-	"github.com/behrouz-rfa/mong-specification/pkg/utils"
+	"github.com/behrouz-rfa/mongo-specification/pkg/utils"
 )
 
 type ExtendedSpecifications interface {

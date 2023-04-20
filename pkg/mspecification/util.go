@@ -2,7 +2,7 @@
 package mspecification
 
 import (
-	"github.com/behrouz-rfa/mong-specification/pkg/filters"
+	"github.com/behrouz-rfa/mongo-specification/pkg/filters"
 	"go.mongodb.org/mongo-driver/bson"
 )
 

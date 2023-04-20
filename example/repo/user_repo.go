@@ -2,10 +2,10 @@ package repo
 
 import (
 	"context"
-	"github.com/behrouz-rfa/mong-specification/example/entity"
-	specification "github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database/specefication"
+	"github.com/behrouz-rfa/mongo-specification/example/entity"
+	specification "github.com/behrouz-rfa/mongo-specification/pkg/infrastructure/database/specefication"
 
-	data "github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database"
+	data "github.com/behrouz-rfa/mongo-specification/pkg/infrastructure/database"
 )
 
 // User is the interface that wraps the basic CRUD operations for User.

@@ -2,7 +2,7 @@ package mg
 
 import (
 	"context"
-	"github.com/behrouz-rfa/mong-specification/pkg/infrastructure/database"
+	"github.com/behrouz-rfa/mongo-specification/pkg/infrastructure/database"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
