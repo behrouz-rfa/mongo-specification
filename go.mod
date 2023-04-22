@@ -3,7 +3,7 @@ module github.com/behrouz-rfa/mongo-specification
 go 1.20
 
 require (
-	github.com/behrouz-rfa/nilmapper v0.1.0
+	github.com/behrouz-rfa/nilmapper v0.1.1
 	github.com/fatih/structs v1.1.0
 	github.com/gertd/go-pluralize v0.2.1
 	github.com/google/uuid v1.3.0
