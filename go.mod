@@ -11,7 +11,6 @@ require (
 	go.mongodb.org/mongo-driver v1.11.4
 )
 
-
 require (
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
