@@ -1,6 +1,6 @@
 package database
 
-import gmodel "gopkg.in/jeevatkm/go-model.v1"
+import "github.com/behrouz-rfa/nilmapper"
 
 type defaultMapper[T, J Document] struct{}
 
@@ -9,12 +9,12 @@ func NewDefaultMapper[T, J Document]() Mapper[T, J] {
 }
 
 func (defaultMapper[T, J]) MapToEntity(model J) (out T) {
-	gmodel.Copy(&out, model)
+	nilmapper.MapStruct(model, &out)
 	return
 }
 
 func (defaultMapper[T, J]) MapToModel(entity T) (out J) {
-	gmodel.Copy(&out, entity)
+	nilmapper.MapStruct(entity, &out)
 	return
 }
 

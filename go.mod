@@ -3,14 +3,17 @@ module github.com/behrouz-rfa/mongo-specification
 go 1.20
 
 require (
+	github.com/behrouz-rfa/nilmapper v0.0.0-20230422044713-c5b554d1a238
 	github.com/fatih/structs v1.1.0
 	github.com/gertd/go-pluralize v0.2.1
 	github.com/google/uuid v1.3.0
 	github.com/iancoleman/strcase v0.2.0
 	go.mongodb.org/mongo-driver v1.11.4
-	gopkg.in/jeevatkm/go-model.v1 v1.1.0
 )
 
+replace (
+github.com/behrouz-rfa/nilmapper => ../nilmapper
+)
 require (
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
