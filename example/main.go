@@ -6,6 +6,7 @@ import (
 	"github.com/behrouz-rfa/mongo-specification/example/entity"
 	"github.com/behrouz-rfa/mongo-specification/example/model"
 	"github.com/behrouz-rfa/mongo-specification/pkg/mspecification"
+	"github.com/behrouz-rfa/mongo-specification/pkg/utils"
 	"log"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -85,7 +86,7 @@ func SampleForGenericMongoRepo(db data.DatabaseController, err error) {
 	create, err := repo.Create(ctx, &model.User{
 		DocumentBase: data.DocumentBase{},
 		Name:         "data",
-		Age:          10,
+		Age:          12,
 	})
 	if err != nil {
 		// Rollback transaction on error
@@ -94,21 +95,25 @@ func SampleForGenericMongoRepo(db data.DatabaseController, err error) {
 		return
 	}
 
-	// Commit transaction
-	err = t.Commit(ctx)
 	if err != nil {
 		log.Println(err)
 		return
 	}
 
-	update, err := repo.Update(ctx, create, &model.User{
-		Name: "test324234",
+	err = repo.Update(ctx, create, &model.User{
+		Name:     "test324234",
+		Age:      14,
+		Lastname: utils.ToValue("Master"),
 	})
 	if err != nil {
 		return
 	}
+	// Commit transaction
+	err = t.Commit(ctx)
+	if err != nil {
+		return
+	}
 	fmt.Println(create)
-	fmt.Println(update.Name)
 
 	return
 }

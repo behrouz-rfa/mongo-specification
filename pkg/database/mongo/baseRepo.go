@@ -52,13 +52,13 @@ func (g GenericBaseMongoRepo[T, J]) Create(ctx context.Context, j J) (string, er
 	return create, nil
 }
 
-func (g GenericBaseMongoRepo[T, J]) Update(ctx context.Context, id string, j J) (J, error) {
-	var t J
-	update, err := g.GenericMongoRepo.Update(ctx, id, g.mapper.MapToEntity(j))
+func (g GenericBaseMongoRepo[T, J]) Update(ctx context.Context, id string, j J) error {
+
+	err := g.GenericMongoRepo.Update(ctx, id, g.mapper.MapToEntity(j))
 	if err != nil {
-		return t, err
+		return err
 	}
-	return g.mapper.MapToModel(update), nil
+	return nil
 }
 
 func (g GenericBaseMongoRepo[T, J]) Delete(ctx context.Context, id string) error {

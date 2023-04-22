@@ -73,16 +73,16 @@ func (r GenericMongoRepo[T]) FindOneBy(ctx context.Context, spec specification.S
 	return results[0], nil
 }
 
-func (r GenericMongoRepo[T]) Update(ctx context.Context, id string, entry T) (T, error) {
+func (r GenericMongoRepo[T]) Update(ctx context.Context, id string, entry T) error {
 	filter := bson.M{"_id": id}
 	data := utils.ToMap(entry, utils.MethodUpdate)
-	var d T
+
 	_, err := r.db.Collection(entry.CollectionName()).UpdateOne(ctx, filter, bson.M{"$set": data})
 	if err != nil {
-		return d, err
+		return err
 	}
 
-	return entry, nil
+	return nil
 }
 
 func (r GenericMongoRepo[T]) Create(ctx context.Context, entry T) (string, error) {

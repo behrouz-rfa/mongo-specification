@@ -9,6 +9,7 @@ type User struct {
 	ID        string
 	Name      string
 	Age       int
+	Lastname  *string
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
@@ -38,5 +39,5 @@ func (u User) SetUpdatedAt() {
 
 func (u User) CollectionName() string {
 	//TODO implement me
-	panic("implement me")
+	return "user"
 }

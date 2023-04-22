@@ -170,6 +170,9 @@ func flattenNestMap(prefix string, src []*structs.Field, dest map[string]interfa
 				break
 			}
 		default:
+			if v.IsZero() {
+				continue
+			}
 			// by default, we set the value
 			dest[prefix+strcase.ToLowerCamel(v.Name())] = v.Value()
 		}

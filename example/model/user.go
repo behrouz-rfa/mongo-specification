@@ -17,10 +17,11 @@ type User struct {
 	data.DocumentBase `bson:"inline"`
 	Name              string
 	Age               int
+	Lastname          *string
 }
 
 func (d User) CollectionName() string {
-	return "users"
+	return "user"
 }
 func (u User) GetID() string {
 
