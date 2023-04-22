@@ -16,6 +16,7 @@ func NewUser(getter data.DataContextGetter) repo.User {
 type User struct {
 	data.DocumentBase `bson:"inline"`
 	Name              string
+	Age               int
 }
 
 func (d User) CollectionName() string {

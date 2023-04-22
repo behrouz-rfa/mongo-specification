@@ -34,12 +34,12 @@ func main() {
 		return
 	}
 
-	SimpleExampleAdMongo(db, err)
+	//SimpleExampleAdMongo(db, err)
 
 	SampleForGenericMongoRepo(db, err)
 
 	//example by repo
-	SampleExampleWithSpecification(db, err)
+	//SampleExampleWithSpecification(db, err)
 
 }
 
@@ -85,6 +85,7 @@ func SampleForGenericMongoRepo(db data.DatabaseController, err error) {
 	create, err := repo.Create(ctx, &model.User{
 		DocumentBase: data.DocumentBase{},
 		Name:         "data",
+		Age:          10,
 	})
 	if err != nil {
 		// Rollback transaction on error
@@ -100,7 +101,14 @@ func SampleForGenericMongoRepo(db data.DatabaseController, err error) {
 		return
 	}
 
+	update, err := repo.Update(ctx, create, &model.User{
+		Name: "test324234",
+	})
+	if err != nil {
+		return
+	}
 	fmt.Println(create)
+	fmt.Println(update.Name)
 
 	return
 }

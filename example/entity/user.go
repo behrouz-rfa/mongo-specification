@@ -8,6 +8,7 @@ import (
 type User struct {
 	ID        string
 	Name      string
+	Age       int
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }

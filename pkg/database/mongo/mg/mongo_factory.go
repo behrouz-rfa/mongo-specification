@@ -22,6 +22,10 @@ func (m *Transaction) Begin(_ context.Context) error {
 	if err != nil {
 		return err
 	}
+	err = session.StartTransaction()
+	if err != nil {
+		return err
+	}
 	m.session = session
 	return nil
 }
