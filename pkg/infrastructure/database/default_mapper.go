@@ -9,12 +9,12 @@ func NewDefaultMapper[T, J Document]() Mapper[T, J] {
 }
 
 func (defaultMapper[T, J]) MapToEntity(model J) (out T) {
-	nilmapper.MapStruct(model, &out)
+	nilmapper.Copy(model, &out)
 	return
 }
 
 func (defaultMapper[T, J]) MapToModel(entity T) (out J) {
-	nilmapper.MapStruct(entity, &out)
+	nilmapper.Copy(entity, &out)
 	return
 }
 
